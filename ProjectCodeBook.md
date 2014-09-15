@@ -30,13 +30,14 @@ The "activity" variable is a factor with one of six values: walking, walkingupst
 
 The following variables are all numeric values of the magnitude of observation values. These were derived from the features.txt names by forcing each name to lower case and removing reserved characters. The native abbreviations were retained to keep the variable names from being too long and unwieldy.
 The abbreviations are:
-*t = time
-*f = frequency
-*angle = averaged signals in the signal window sample
-*body/gravity = the frame against which the variable was measured
-*acc/gyro = whether the measurement is acceleration or gyroscopic
-*jerk = body linear acceleration and angular velocity derived in time
-*x/y/z = the axis of the measurement
+
+* t = time
+* f = frequency
+* angle = averaged signals in the signal window sample
+* body/gravity = the frame against which the variable was measured
+* acc/gyro = whether the measurement is acceleration or gyroscopic
+* jerk = body linear acceleration and angular velocity derived in time
+* x/y/z = the axis of the measurement
 
 The measured variables are:
 
