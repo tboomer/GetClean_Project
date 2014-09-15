@@ -30,10 +30,11 @@ The script first executes a series of read.table commands to create data tables 
 that will be used in subsequent steps to process the data.
 
 The "combined.data" data frame is the result of the following steps:
-1 Merge the training and test sets to create one data set: The test data is appended to the training data using an rbind command.
-2 Extract only the measurements on the mean and standard deviation for each measurement: The 561 variable names from the features.txt file are searched for the text strings "Mean", "mean", and "std" to create a vector of the column indexes which is used to subset the data. Two data fields are added to the observations data: 1) "subject" from subject_train.txt and subject_test.txt and 2) "activity" from the y_train.txt and y_test.txt files.
-3 Add descriptive activity names: Descriptive names were defined as a character vector and substituted for the integer activity values in the source data.
-4 Use descriptive variable names: The variable names were processed to make them all lower case and to remove problematic characters {( ) , -} substituting {_} where necessary for understandability.
+
+1. Merge the training and test sets to create one data set: The test data is appended to the training data using an rbind command.
+2. Extract only the measurements on the mean and standard deviation for each measurement: The 561 variable names from the features.txt file are searched for the text strings "Mean", "mean", and "std" to create a vector of the column indexes which is used to subset the data. Two data fields are added to the observations data: 1) "subject" from subject_train.txt and subject_test.txt and 2) "activity" from the y_train.txt and y_test.txt files.
+3. Add descriptive activity names: Descriptive names were defined as a character vector and substituted for the integer activity values in the source data.
+4. Use descriptive variable names: The variable names were processed to make them all lower case and to remove problematic characters {( ) , -} substituting {_} where necessary for understandability.
 
 The "tidy.data" data frame for step 5 uses the ddply command on combined.data to execute the mean 
 function on each column for each subject/activity pair. The write.table command creates the step5.txt file
