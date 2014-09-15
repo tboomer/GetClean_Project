@@ -8,6 +8,7 @@ The contents of this repository include:
 
 - run_analysis.R: The R script that processes the raw Human Activity Recognition Using Smartphones Data Set and produces one data set for each of the 10299 observations of 86 mean and standard deviation variables and a second data set with the mean values of each variable for each subject/activity pair.
 - ProjectCodeBook.md: Documentation of the data output.
+- step5.txt: A copy of the output data file. (Use header = TRUE to read the file into R).
 
 The sections below describe the processing script.
 
@@ -16,7 +17,6 @@ The script, run_analysis.R, reads the extracted source data files into data tabl
 - combined.data: 10,299 observations of 88 variables (Steps 1-4 of the assignment)
 - tidy.data: 180 observations of 88 variables (Step 5 of the assignment)
 the tidy.data data frame is written to the step5.txt file.
-- step5.txt: A copy of the output data file. 
 
 ### Prerequisites
 In order to run the script, it must be located in the same directory as the root directory of the

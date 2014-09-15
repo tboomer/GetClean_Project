@@ -20,10 +20,12 @@ combined.data <- rbind(xtrain, xtest)     #Merge data sets
 columns <- grep("[Mm]ean|std", varnames$V2)  #Identify mean/std columns
 combined.data <- combined.data[ , columns]#Extract mean and std columns
 combined.data$subject <- c(trainsubject$V1, testsubject$V1) #Add subject var
+combined.data$subject <- as.factor(combined.data$subject)
 combined.data$activity <- c(ytrain$V1, ytest$V1) #Add activity variable
 activityname <- c("walking", "walkingupstairs","walkingdownstairs",
                   "sitting","standing","laying")
-combined.data$activity <- activityname[combined.data$activity] 
+combined.data$activity <- activityname[combined.data$activity]
+combined.data$activity <- as.factor(combined.data$activity)
       #Replace integer values of activity with descriptive activity names
 cleannames <- gsub("\\()|\\)","",tolower(varnames$V2[columns]))
 cleannames <- gsub("\\(|\\,|\\-", "_", cleannames)   #Simplify column names

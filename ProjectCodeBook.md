@@ -1,19 +1,44 @@
-# Contents
-1. Source Data
-2. Output Data
+#Background
+Human Activity Recognition database built from the recordings of 30 subjects between the ages of 19-48 years performing activities of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensors.
 
-#1. Source Data
-The data was downloaded on September 9, 2014 from:
-https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-A description of the source data is available at:
-[http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) 
+The data for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
-#2. Output Data
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag).
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals).
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions. Variables were estimated from each signal for mean, standard deviation (std) and other statistics. Only mean and standard deviation of the acceleration and gyro measurements are used in this data set. Additional mean variable measurements are included for:
+
+* gravityMean
+* tBodyAccMean
+* tBodyAccJerkMean
+* tBodyGyroMean
+* tBodyGyroJerkMean
+
+Data Description Source: Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+
+#Code Book
 ## Parts 1-4 (combined.data)
+The combined.data data frame contains 10,299 observations of 86 Measured Variables plus 2 factor variables. The 2,947 observations in the test data set were appended to the 7,352 observations in the train data set. The Measured Variables were selected based on the presence of "Mean", "mean", or "std" in the variable names in the features.txt file.
 
-### Observation Variables
-The following variables are all integer values of the mean or standard deviation (std) of the observation values indicated.
+The "subject" variable is factor with an integer value between 1 and 30 identifying the subject of the observation. It is the concatenation of the train and test subject files.
 
+The "activity" variable is a factor with one of six values: walking, walkingupstairs, walkingdownstairs, sitting, standing, laying. It is created by substituting the activity labels for the integer values 1-6 identifying the activity for each observation found in the ytrain and ytest data files.
+
+### Measured Variables
+
+The following variables are all numeric values of the magnitude of observation values. These were derived from the features.txt names by forcing each name to lower case and removing reserved characters. The native abbreviations were retained to keep the variable names from being too long and unwieldy.
+The abbreviations are:
+*t = time
+*f = frequency
+*angle = averaged signals in the signal window sample
+*body/gravity = the frame against which the variable was measured
+*acc/gyro = whether the measurement is acceleration or gyroscopic
+*jerk = body linear acceleration and angular velocity derived in time
+*x/y/z = the axis of the measurement
+
+The variables are:
  [1] "tbodyacc_mean_x"                     "tbodyacc_mean_y"                    
  [3] "tbodyacc_mean_z"                     "tbodyacc_std_x"                     
  [5] "tbodyacc_std_y"                      "tbodyacc_std_z"                     
@@ -58,11 +83,6 @@ The following variables are all integer values of the mean or standard deviation
 [83] "angle_tbodygyrojerkmean_gravitymean" "angle_x_gravitymean"                
 [85] "angle_y_gravitymean"                 "angle_z_gravitymean"
 
-### Description Variables
-The "subject" variable is an integer between 1 and 30 indicating the subject of the observation.                          
-
-The "activity" variable is a character value with one of six values:walking, walkingupstairs, walkingdownstairs, sitting, standing, laying
 
 ## Part 5 (tidy.data)
-"subject" and "activity" are the same as defined above. There is one observation for each combination of subject and activity.
-The observation variables are the same as for Part 1-4 above. However the values for each variable is mean of each of the observation variables for each subject/activity combination.
+The variables are the same as Part 1-4 above. However the value for each variable is mean of all observations for each subject/activity combination. As a result there are 180 observations, one for each unique subject/activity combination.
